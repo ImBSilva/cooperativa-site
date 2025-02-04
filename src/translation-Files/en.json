@@ -1,0 +1,105 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "presentationText": "We are a cooperative of independent studios, bringing together complementary specialties to create extraordinary games. With expertise in multiplayer, web and Windows, we offer full-cycle outsourced development: from strategic planning to artistic excellence. We transform concepts into immersive worlds and refined mechanics, where technique, creativity and passion come together to delight players.",
+    "buttonPortifolio": "Portfolio",
+    "buttonContact": "Contact us  "
+  },
+  "services": {
+    "title": "Our",
+    "secondTitle": "Services",
+    "development": {
+      "title": "Development",
+      "description": "We code experiences that transcend the ordinary. With cutting-edge technology and innovative solutions, we transform concepts into functional, fluid, and engaging games. Each line of code is written with precision to ensure performance, scalability, and flawless gameplay, creating solid foundations for extraordinary digital worlds."
+    },
+    "art": {
+      "title": "Art and Design",
+      "description": "We create visual universes that tell stories and move emotions. Our art and design combine aesthetics, functionality, and narrative to bring memorable characters, impressive scenarios, and intuitive interfaces to life. Every detail is designed to immerse the player in a unique and visually stunning experience."
+    },
+    "animation": {
+      "title": "Animation and VFX",
+      "description": "We give movement and magic to each frame in both 3D and 2D. Our animations and visual effects are carefully crafted to convey emotion, realism, and impact. From fluid movements to spectacular explosions, each element is designed to elevate immersion and transform the game into a cinematic experience."
+    },
+    "planning": {
+      "title": "Planning and Integration",
+      "description": "We structure the path from dream to reality. With strategic planning and efficient integration of all disciplines, we ensure that each project stage is executed with clarity, organization, and focus. Our commitment is to deliver results that exceed expectations, on time and with exceptional quality."
+    },
+    "buttonCTA":{
+      "text": "Get a quote   "
+    }
+  },
+  "portfolio": {
+    "title": "Our",
+    "secondTitle": "Portfolio"
+  },
+  "aboutUs": {
+    "title": "About",
+    "secondTitle": "Us",
+    "presentationText1": "We are a cooperative made up of independent creatives, united by specialties that complement each other in a unique way. Together, we act as an outsourced development studio with vast experience in multiplayer, web and Windows games. We know exactly how to create immersive and engaging gaming experiences, combining technique, creativity and expertise to deliver projects that captivate and inspire.",
+    "presentationText2": "Our journey began as independent developers and artists, each walking our own paths and accumulating years of experience in the industry. Now, we've united our knowledge, skills and passion to offer something greater: games that not only work, but delight.",
+    "presentationText3": "Here, every idea is taken seriously, every detail is carefully worked out, and every delivery is made with dedication and heart. We are more than a studio; we are a team that believes in the power of games to tell stories, connect people and inspire emotions."
+  },
+  "teamComponent": {
+    "team": {
+      "bruno": {
+        "about": "I've always had a passion for working with games. I love exploring the new and taking on creative challenges. Throughout my journey, I've constantly looked for ways to break into the industry, and each step has allowed me to gain experience in different sectors, broadening my vision and skills. This path has prepared me to make a significant contribution to the development of experiences that delight and inspire.",
+        "favoriteGames": "Doom Eternal, Hellsinger, Outer wilds, Tunic, Darkest Dungeon I e II",
+        "services": [
+          "Artist 3D",
+          "Producer",
+          "UI/UX",
+          "VFX"
+        ]
+      },
+      "gabriel": {
+        "about": "From an early age, I immersed myself in the world of visual arts, which led me to study design and dedicate myself to creating games. Combining my passion for art and games, I transform ideas into worlds and stories that enchant and inspire.",
+        "favoriteGames": "Portal, Counter Strike, BioShock e Zelda",
+        "services": [
+          "Artist 2D",
+          "Marketing",
+          "UI",
+          "VFX"
+        ]
+      },
+      "matheus": {
+        "about": "For the last five years, I've dedicated myself to studying and creating games in Unicorn.ity, desenvolvendo projetos 2D e 3D para mobile, web e desktop, além de experiências multiplayer interativas e colaborativas. Estou sempre em busca de novos conhecimentos e aprimoramento de habilidades, com o objetivo de criar jogos que sejam divertidos, criativos e inovadores. Estou animado para aplicar minha paixão e expertise em novos desafios, contribuindo para projetos que deixem uma marca na indústria de jogos.",
+        "favoriteGames": "Dota 2, Terraria, Age of Empires 2, Factorio",
+        "services": [
+          "Programmer",
+          "Game Designer",
+          "Game feel",
+          "Multiplayer"
+        ]
+      },
+      "wali": {
+        "about": "With over five years' experience, I've been a game developer with a passion for games since childhood. Inspired by titles such as Dark Souls and The Legend of Zelda, I constantly seek to expand my knowledge of different genres and styles to create unique and memorable interactive experiences. I have expertise in game feel programming and the development of innovative mechanics, always with the aim of providing a satisfying and engaging gaming experience. My focus is on creating interactions that captivate players, making them so intuitive and enjoyable that they become truly addictive.",
+        "favoriteGames": "Souls like, Party game, The Legend of Zelda",
+        "services": [
+          "Programmers",
+          "Game Designer",
+          "Sound Designer",
+          "Game feel"
+        ]
+      }
+    },
+    "favoriteGamesText": "Favorite Games:",
+    "socialMediaTitle": "Social Media"
+  },
+  "mailUsComponent": {
+    "contactTitle": "Contact us and build your idea!",
+    "contactSubtitle": "Fill in the form below to contact us.",
+    "input": {
+      "name": "Enter your name",
+      "email": "Enter your email",
+      "phone": "Enter your phone number",
+      "message": "Type your message"
+    },
+    "sendButton": "Send"
+  }
+}

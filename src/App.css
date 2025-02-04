@@ -1,0 +1,652 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/*.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 190px;
+  width: 900px;
+  background: #0C0C0C;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/*.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}*/
+
+.app-wrapper {
+  background-color: #0C0C0C;
+  min-height: 100dvh;
+}
+
+/* Somos uma cooperativa formada por três estúdios independentes cujas especialidades se complementam perfeitamente. Atuamos como um estúdio de desenvolvimento de jogos terceirizado, acumulando vasta experiência em multiplayer, games para a web e windows. Sabemos exatamente como criar uma experiência de jogo imersiva e envolvente. */
+
+/* Ajuste a cor do texto para melhor contraste */
+
+.main-container {
+  max-width: 900px !important;
+  margin: auto !important;
+  padding: 0px 0px 72px 0px;
+
+}
+
+.padding-presentation-text {
+  padding-left: 32px;
+}
+
+/* Add media query for mobile devices */
+@media (max-width: 767px) {
+  .main-container {
+    padding: 0px 16px 0px 16px;
+  }
+
+  .padding-presentation-text {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .justify-image-mobile {
+    justify-content: center;
+  }
+}
+
+.title {
+  font-family: "Inter";
+}
+
+.sub-text {
+  margin-top: 16px;
+  font-family: 'Jost' !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+}
+
+.services-title h3 {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+}
+
+.services-title h3 .gray-title {
+  color: #5f5f5f;
+}
+
+.services-title .orange-title {
+  background: linear-gradient(102.3deg, #EC221F 7.87%, #861311 88.1%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.services-title .orange-title-border {
+  font-size: 96px;
+  font-weight: bold;
+  color: #0C0C0C;
+  -webkit-text-stroke: 2px #EC221F;
+  text-stroke: 2px #EC221F;
+  -moz-text-stroke: 2px #EC221F;
+  position: relative;
+  display: inline-block;
+}
+
+.services-title .orange-title-border::after {
+  content: attr(class);
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(to right, #EC221F, #861311);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.overlapping-text {
+  position: relative;
+  display: inline-block;
+  margin: 16px 0px;
+}
+
+.overlapping-text .overlap {
+  font-size: 48px;
+  position: absolute;
+  left: 0.8em;
+  top: 1.3em;
+  white-space: nowrap;
+  color: #D9D9D9;
+  z-index: 2;
+}
+
+.service-image {
+  height: 220px !important;
+}
+
+.clickable-card {
+  cursor: pointer;
+  background-color: transparent !important;
+  /* Remove o fundo padrão */
+  border: none !important;
+  /* Remove a borda padrão */
+  height: 100px; /* Ajuste a altura conforme necessário */
+}
+
+.clickable-card:hover {
+  transform: translateY(-5px);
+}
+
+.selected-card {
+  transform: scale(1.05);
+}
+
+.service-number {
+  font-size: 40px !important;
+  font-weight: bold;
+  background: linear-gradient(102.3deg, #EC221F 7.87%, #861311 88.1%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-align: left !important;
+  margin-bottom: 0px;
+}
+
+.card-text {
+  font-weight: bolder;
+  /* Cor similar ao texto de sobreposição */
+  font-family: 'Inter', sans-serif !important;
+  font-size: 24px !important;
+  margin-top: 0px !important;
+}
+
+.card-text.selected {
+  color: #FEE9E7 !important;
+  /* Cor desejada para o texto quando selecionado */
+}
+
+.clickable-card:not(.selected) .card-text {
+  color: #5F5F5F;
+  /* Cor desejada para o texto dos cards não selecionados */
+}
+
+.card-body {
+  padding: 0px;
+  text-align: left;
+  /* Alinha todo o conteúdo do card à esquerda */
+  padding-top: 32px !important;
+}
+
+/* Ajuste a cor de fundo da Navbar */
+.navbar {
+  font-family: 'Jost' !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 29px;
+  background-color: #0C0C0C !important;
+}
+
+/* Ajuste as cores dos links da Navbar */
+.navbar-light .navbar-nav .nav-link {
+  color: #FFFFFF !important;
+}
+
+/* Ajuste a cor do brand (logo) na Navbar se necessário */
+.navbar-light .navbar-brand {
+  color: #FFFFFF !important;
+}
+
+/* Ajuste a cor do toggler (botão de menu em telas pequenas) se necessário */
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-light .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.black-button {
+  width: 132px;
+  background: linear-gradient(307.8deg, #0C0C0C -35.29%, #808080 583.32%);
+  align-content: center;
+}
+
+.black-button span,
+.black-button svg {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600;
+  background-image: linear-gradient(102.3deg, #EC221F 7.87%, #861311 88.1%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.black-button svg path {
+  fill: url(#buttonGradient);
+}
+
+.cta-button {
+  width: 156px;
+  background: linear-gradient(102.3deg, #EC221F 7.87%, #861311 88.1%);
+  color: #FEE9E7 !important;
+  align-content: center;
+
+}
+
+.quote-button {
+  width: 216px !important;
+}
+
+.black-button,
+.cta-button {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  height: 56px;
+  border-radius: 45px !important;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  border: none !important;
+}
+
+.portfolio {
+  padding: 24px 0px !important;
+ /*border-bottom: outset;*/
+}
+
+.portfolio h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 56px;
+  margin-bottom: 0px;
+}
+
+.portfolio-link-button {
+  color: #FF4136 !important;
+  text-decoration: none;
+  padding-right: 0px !important;
+  background: none !important;
+  border: none !important;
+}
+
+.portfolio-link-button:hover {
+  color: #FF725C;
+}
+
+.project-tag {
+  font-family: 'Jost', sans-serif !important;
+  font-size: 20px;
+  font-weight: 600;
+  color: #6c757d;
+}
+
+.project-tag p {
+  font-family: 'Jost', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  color: #FEE9E7 !important;
+}
+
+.tag-separator {
+  width: 6px;
+  height: 6px;
+  background-color: #6c757d;
+  /* Cor cinza similar à classe bg-secondary */
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.close-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
+  padding: 0;
+}
+
+.close-button svg {
+  font-size: 24px;
+}
+
+.quem-somos {
+  margin: 40px 0px !important;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.content-slide {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+.fade-in {
+  opacity: 1;
+}
+
+.fade-in.active {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.content-slide.fade-in {
+  opacity: 1;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.content-slide.fade-out {
+  opacity: 0;
+}
+
+.content-slide.active {
+  animation: slideIn 0.5s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.profile-image {
+  transition: all 0.5s ease-in-out;
+}
+
+.card-info{
+    /*justify-items: center;*/
+    place-items: center;
+    text-align: -webkit-center;
+}
+
+.cooperados p,
+.cooperados span {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #5F5F5F;
+}
+
+.cooperados .favorite-games {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  color: #FFFFFF;
+}
+
+.cooperados .photo {
+
+  place-self: center;
+  place-content: center;
+  padding-bottom: 16px;
+  margin: 0px;
+}
+
+.cooperados .links-title {
+  font-size: 24px;
+  text-align: center;
+  text-align: -webkit-center;
+  padding-top: 0;
+}
+
+.cooperados .icons {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: center;
+  text-align: center;
+  gap: 0px; /* horizontal and vertical gap */
+  padding-top: 8px;
+  max-width: 100%; /* Prevent overflow */
+}
+.cooperados .icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px; /* Minimum icon width */
+}
+
+.gradient-icon {
+  fill: url(#buttonGradient);
+}
+
+.cooperados .card-title {
+  font-weight: 600;
+  font-size: 24px !important;
+}
+
+.cooperados .clickable-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: transparent !important;
+}
+
+.cooperados .clickable-card .card-title.selected {
+  color: #e9211e !important;
+}
+
+.cooperados .clickable-card:not(.selected) .card-title {
+  color: #662A21;
+  /* Cor desejada para o texto dos cards não selecionados */
+}
+
+.cooperados .selected {
+  transform: scale(1.05);
+}
+
+.content-slide {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.content-slide.fade-out {
+  opacity: 0;
+}
+
+.content-slide.fade-in {
+  opacity: 1;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.service-image {
+  transition: all 0.5s ease-in-out;
+}
+
+.service-image.fade-in.active {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.cooperados .card-list {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 300 !important;
+  font-size: 14px !important;
+  line-height: 20px;
+  color: #FFFFFF !important;
+}
+
+.cooperados .black-button {
+  height: 56px;
+  width: 56px;
+}
+
+.cooperados .justify-contend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.custom-list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.custom-list li::before {
+  content: '●';
+  /* Use a bullet character */
+  color: white;
+  /* Change to your desired color */
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.mailUs .card {
+  background: linear-gradient(307.8deg, #0C0C0C -35.29%, #808080 583.32%);
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 36px;
+  padding: 0px 32px !important;
+}
+
+.mailUs .card .card-title {
+  font-family: 'Jost' !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  color: #7278EB;
+}
+
+.mailUs .card .card-text {
+  font-family: 'Jost' !important;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px !important;
+  line-height: 29px;
+  color: #FFFFFF;
+}
+
+.nav-link-hover {
+  position: relative;
+  transition: color 0.3s ease;
+
+}
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #EC221F;
+  transition: width 0.3s ease;
+}
+
+
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+.nav-link-hover:hover {
+  color: #EC221F !important;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio .carousel-control-prev,
+.portfolio .carousel-control-next {
+  width: 5%;
+}
+
+.portfolio .carousel-control-prev-icon,
+.portfolio .carousel-control-next-icon {
+  background-image: none;
+}
+
+.portfolio .carousel-control-prev-icon::before,
+.portfolio .carousel-control-next-icon::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: black;
+}
+
+
+.language-switcher {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 16px !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  margin-left: auto !important;
+  text-transform: uppercase !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 1px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.language-switcher > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.language-switcher:hover {
+  color: #EC221F !important;
+  transform: translateY(-2px);
+}
+
+.language-switcher:active {
+  transform: translateY(0) !important;
+}

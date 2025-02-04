@@ -1,0 +1,105 @@
+{
+  "navbar": {
+    "home": "Início",
+    "services": "Serviços",
+    "portfolio": "Portfólio",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "home": {
+    "presentationText": "Somos uma cooperativa de estúdios independentes, unindo especialidades complementares para criar jogos extraordinários. Com expertise em multiplayer, web e Windows, oferecemos desenvolvimento terceirizado de ciclo completo: do planejamento estratégico à excelência artística. Transformamos conceitos em mundos imersivos e mecânicas refinadas, onde técnica, criatividade e paixão se unem para encantar jogadores.",
+    "buttonPortifolio": "Portfólio",
+    "buttonContact": "Contate-nos  "
+  },
+  "services": {
+    "title": "Nossos",
+    "secondTitle": "Serviços",
+    "development": {
+      "title": "Desenvolvimento",
+      "description": "Codificamos experiências que transcendem o comum. Com tecnologia de ponta e soluções inovadoras, transformamos conceitos em jogos funcionais, fluidos e envolventes. Cada linha de código é escrita com precisão para garantir performance, escalabilidade e uma jogabilidade impecável, criando bases sólidas para mundos digitais extraordinários."
+    },
+    "art": {
+      "title": "Arte e Design",
+      "description": "Criamos universos visuais que contam histórias e emocionam. Nossa arte e design combinam estética, funcionalidade e narrativa para dar vida a personagens memoráveis, cenários impressionantes e interfaces intuitivas. Cada detalhe é pensado para imergir o jogador em uma experiência única e visualmente deslumbrante."
+    },
+    "animation": {
+      "title": "Animação e VFX",
+      "description": "Damos movimento e magia a cada frame tando no 3D quanto na 2D. Nossas animações e efeitos visuais são cuidadosamente elaborados para transmitir emoção, realismo e impacto. De movimentos fluidos a explosões espetaculares, cada elemento é projetado para elevar a imersão e transformar o jogo em uma experiência cinematográfica."
+    },
+    "planning": {
+      "title": "Planejamento e Integração",
+      "description": "Estruturamos o caminho do sonho à realidade. Com planejamento estratégico e integração eficiente de todas as disciplinas, garantimos que cada etapa do projeto seja executada com clareza, organização e foco. Nosso compromisso é entregar resultados que superem expectativas, dentro do prazo e com qualidade excepcional."
+    },
+    "buttonCTA":{
+      "text": "Faça um Orçamento  "
+    }
+  },
+  "portfolio": {
+    "title": "Nosso",
+    "secondTitle": "Portfólio"
+  },
+  "aboutUs": {
+    "title": "Quem",
+    "secondTitle": "Somos",
+    "presentationText1": "Somos uma cooperativa formada por criativos independentes, unidos por especialidades que se complementam de maneira única. Juntos, atuamos como um estúdio de desenvolvimento terceirizado, com vasta experiência em multiplayer, games para web e Windows. Sabemos exatamente como criar experiências de jogo imersivas e envolventes, combinando técnica, criatividade e expertise para entregar projetos que cativam e inspiram.",
+    "presentationText2": "Nossa jornada começou como desenvolvedores e artistas independentes, cada um trilhando caminhos solitários e acumulando anos de experiência na indústria. Agora, unimos nossos conhecimentos, habilidades e paixão para oferecer algo maior: jogos que não apenas funcionam, mas encantam.",
+    "presentationText3": "Aqui, cada ideia é levada a sério, cada detalhe é cuidadosamente trabalhado, e cada entrega é feita com dedicação e coração. Somos mais que um estúdio; somos uma equipe que acredita no poder dos jogos para contar histórias, conectar pessoas e inspirar emoções."
+  },
+  "teamComponent": {
+    "team": {
+      "bruno": {
+        "about": "Sempre fui movido pela paixão de trabalhar com jogos. Adoro explorar o novo e enfrentar desafios criativos. Ao longo da minha jornada, busquei constantemente maneiras de entrar na indústria, e cada passo me permitiu adquirir experiência em diversos setores, ampliando minha visão e habilidades. Essa trajetória me preparou para contribuir de forma significativa no desenvolvimento de experiências que encantam e inspiram.",
+        "favoriteGames": "Doom Eternal, Hellsinger, Outer wilds, Tunic, Darkest Dungeon I e II",
+        "services": [
+          "Artista 3D",
+          "Producer",
+          "UI/UX",
+          "VFX"
+        ]
+      },
+      "gabriel": {
+        "about": "Desde cedo, mergulhei no mundo das artes visuais, o que me levou a me formar em design e me dedicar à criação de jogos. Unindo minha paixão por arte e games, transformo ideias em mundos e histórias que encantam e inspiram.",
+        "favoriteGames": "Portal, Counter Strike, BioShock e Zelda",
+        "services": [
+          "Artista 2D",
+          "Marketing",
+          "UI",
+          "VFX"
+        ]
+      },
+      "matheus": {
+        "about": "Nos últimos cinco anos, tenho me dedicado ao estudo e criação de jogos no Unity, desenvolvendo projetos 2D e 3D para mobile, web e desktop, além de experiências multiplayer interativas e colaborativas. Estou sempre em busca de novos conhecimentos e aprimoramento de habilidades, com o objetivo de criar jogos que sejam divertidos, criativos e inovadores. Estou animado para aplicar minha paixão e expertise em novos desafios, contribuindo para projetos que deixem uma marca na indústria de jogos.",
+        "favoriteGames": "Dota 2, Terraria, Age of Empires 2, Factorio",
+        "services": [
+          "Programador",
+          "Game Designer",
+          "Game feel",
+          "Multiplayer"
+        ]
+      },
+      "wali": {
+        "about": "Com mais de cinco anos de experiência, sou um desenvolvedor de jogos apaixonado por games desde a infância. Inspirado por títulos como Dark Souls e The Legend of Zelda, busco constantemente expandir meu conhecimento sobre diferentes gêneros e estilos para criar experiências interativas únicas e memoráveis. Tenho expertise em programação de game feel e no desenvolvimento de mecânicas inovadoras, sempre com o objetivo de proporcionar uma experiência de jogo satisfatória e envolvente. Meu foco é criar interações que cativem os jogadores, tornando-as tão intuitivas e prazerosas que se tornem verdadeiramente viciantes.",
+        "favoriteGames": "Souls like, Party game, The Legend of Zelda",
+        "services": [
+          "Programador",
+          "Game Designer",
+          "Sound Designer",
+          "Game feel"
+        ]
+      }
+    },
+    "favoriteGamesText": "Jogos Favoritos:",
+    "socialMediaTitle": "Redes Sociais"
+  },
+  "mailUsComponent": {
+    "contactTitle": "Entre em contato conosco e construa sua ideia!",
+    "contactSubtitle": "Preencha o formulário abaixo para entrar em contato conosco.",
+    "input": {
+      "name": "Digite seu nome",
+      "email": "Digite seu email",
+      "phone": "Digite seu telefone",
+      "message": "Digite sua mensagem"
+    },
+    "sendButton": "Enviar"
+  }
+}
