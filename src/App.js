@@ -1,6 +1,6 @@
 import './App.css';
-import { Navbar, Nav, Container} from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Container} from 'react-bootstrap';
+import { BrowserRouter as Router,} from 'react-router-dom';
 import Inicio from './components/Inicio.js';
 import Servicos from './components/Servicos.js';
 import MailUs from './components/MailUs.js';

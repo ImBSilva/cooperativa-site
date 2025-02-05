@@ -2,17 +2,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Carousel, Col, Image } from 'react-bootstrap';
 import { FaArrowRight, FaArrowLeft, FaTimes } from 'react-icons/fa';
-import logo from './Images/logo.png';
+import PuzzlePirateImage from './Images/ProjectThumbs/PuzzlePirateThumb.png';
 
 const Portfolio = () => {
   const { t } = useTranslation('common');
   const projects = [
-    { id: 1, title: 'Projeto 1', image: logo, link: 'https://www.artstation.com/studiocapivaraneon' },
-    { id: 2, title: 'Projeto 2', image: logo, link: 'https://www.artstation.com/studiocapivaraneon' },
-    { id: 3, title: 'Projeto 3', image: logo, link: 'https://www.artstation.com/studiocapivaraneon' },
-    { id: 4, title: 'Projeto 4', image: logo, link: 'https://www.artstation.com/studiocapivaraneon' },
-    { id: 5, title: 'Projeto 5', image: logo, link: 'https://www.artstation.com/studiocapivaraneon' },
-    { id: 6, title: 'Projeto 6', image: logo, link: 'https://www.artstation.com/studiocapivaraneon' },
+    { id: 1, title: 'Puzzle Pirate', image: PuzzlePirateImage, link: 'https://www.artstation.com/studiocapivaraneon' },
   ];
 
   const chunkedProjects = (arr, size) => {

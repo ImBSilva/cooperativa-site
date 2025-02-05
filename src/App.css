@@ -1,66 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-/*.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 190px;
-  width: 900px;
-  background: #0C0C0C;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-/*.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}*/
-
 .app-wrapper {
-  background-color: #0C0C0C;
+  background-color: #0C0C0C !important;
   min-height: 100dvh;
+  width: 100%;
 }
-
-/* Somos uma cooperativa formada por três estúdios independentes cujas especialidades se complementam perfeitamente. Atuamos como um estúdio de desenvolvimento de jogos terceirizado, acumulando vasta experiência em multiplayer, games para a web e windows. Sabemos exatamente como criar uma experiência de jogo imersiva e envolvente. */
-
-/* Ajuste a cor do texto para melhor contraste */
 
 .main-container {
   max-width: 900px !important;
   margin: auto !important;
-  padding: 0px 0px 72px 0px;
+  padding: 0px 0px 80px 0px;
 
 }
+
+.custom-navbar {
+  background-color: var(--color-background) !important;
+  padding: 1rem 0;
+  width: 100%;
+}
+/* Ajuste a cor de fundo da Navbar */
+.navbar {
+  font-family: 'Jost' !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 29px;
+  background-color: #0C0C0C !important;
+}
+
+/* Ajuste as cores dos links da Navbar */
+.navbar-light .navbar-nav .nav-link {
+  color: #FFFFFF !important;
+}
+
+
+/* Ajuste a cor do toggler (botão de menu em telas pequenas) se necessário */
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-light .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 991px) {
+  .custom-navbar .navbar-nav {
+      padding-top: 15px;
+  }
+  .custom-navbar .nav-link {
+      padding: 10px 0;
+  }
+}
+
 
 .padding-presentation-text {
   padding-left: 32px;
@@ -82,6 +73,8 @@
   }
 }
 
+
+
 .title {
   font-family: "Inter";
 }
@@ -95,6 +88,12 @@
   line-height: 24px;
   color: white;
 }
+
+
+
+
+/* Css From Serviços */
+
 
 .services-title h3 {
   font-size: 2.5rem !important;
@@ -123,7 +122,7 @@
   display: inline-block;
 }
 
-.services-title .orange-title-border::after {
+.services-title .orange-title-border ::after {
   content: attr(class);
   position: absolute;
   z-index: -1;
@@ -136,6 +135,7 @@
 .overlapping-text {
   position: relative;
   display: inline-block;
+  white-space: nowrap;
   margin: 16px 0px;
 }
 
@@ -144,9 +144,44 @@
   position: absolute;
   left: 0.8em;
   top: 1.3em;
+  width: 100%;
   white-space: nowrap;
   color: #D9D9D9;
-  z-index: 2;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* Adjust font size and positioning for mobile screens */
+@media (max-width: 768px) {
+  .overlapping-text {
+    font-size: 0.5rem; /* Adjust font size as needed */
+  }
+
+  .orange-title-border {
+    padding-right: 0.5rem; /* Adjust padding as needed */
+  }
+
+  .overlap {
+    padding-left: 0.1rem; /* Adjust padding as needed */
+  }
+}
+
+/* Adjust font size and positioning for desktop screens */
+@media (min-width: 769px) {
+  .overlapping-text {
+    font-size: 2rem; /* Adjust font size as needed */
+  }
+
+  .orange-title-border {
+    padding-right: 1rem; /* Adjust padding as needed */
+  }
+
+  .overlap {
+    padding-left: 1rem; /* Adjust padding as needed */
+  }
 }
 
 .service-image {
@@ -206,34 +241,7 @@
   padding-top: 32px !important;
 }
 
-/* Ajuste a cor de fundo da Navbar */
-.navbar {
-  font-family: 'Jost' !important;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 29px;
-  background-color: #0C0C0C !important;
-}
 
-/* Ajuste as cores dos links da Navbar */
-.navbar-light .navbar-nav .nav-link {
-  color: #FFFFFF !important;
-}
-
-/* Ajuste a cor do brand (logo) na Navbar se necessário */
-.navbar-light .navbar-brand {
-  color: #FFFFFF !important;
-}
-
-/* Ajuste a cor do toggler (botão de menu em telas pequenas) se necessário */
-.navbar-light .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-.navbar-light .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.1);
-}
 
 .black-button {
   width: 132px;
@@ -649,4 +657,58 @@
 
 .language-switcher:active {
   transform: translateY(0) !important;
+}
+
+.w-md-auto {
+  @media (min-width: 768px) {
+    width: auto !important;
+  }
+}
+
+.max-width-md {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .black-button,
+  .cta-button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .language-switcher > div {
+    margin-top: 80px !important;  /* Slightly larger margin for mobile */
+  }
+  .black-button,
+  .cta-button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.service-card {
+  transition: var(--transition-default);
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-content {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .service-image {
+    max-width: 100%;
+    margin-top: var(--spacing-md);
+  }
+  
+  .service-card {
+    margin-bottom: var(--spacing-sm);
+  }
 }
