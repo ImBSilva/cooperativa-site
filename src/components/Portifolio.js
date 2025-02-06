@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Carousel, Col, Image } from 'react-bootstrap';
-import { FaArrowRight, FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import PuzzlePirateImage from './Images/ProjectThumbs/PuzzlePirateThumb.png';
+import CatRacerImage from './Images/ProjectThumbs/CatRacerThumb.png';
+import DesviaPirataImage from './Images/ProjectThumbs/DesviaPirataThumb.png';
+import GuacaRoyaleImage from './Images/ProjectThumbs/GuacaRoyaleThumb.png';
 
 const Portfolio = () => {
   const { t } = useTranslation('common');
   const projects = [
     { id: 1, title: 'Puzzle Pirate', image: PuzzlePirateImage, link: 'https://www.artstation.com/studiocapivaraneon' },
+    { id: 2, title: 'Cat Racer', image: CatRacerImage, link: 'https://www.artstation.com/studiocapivaraneon' },
+    { id: 3, title: 'Desvia Pirata', image: DesviaPirataImage, link: 'https://www.artstation.com/studiocapivaraneon' },
+    { id: 4, title: 'Guaca Royale', image: GuacaRoyaleImage, link: 'https://www.artstation.com/studiocapivaraneon' },
+
   ];
 
   const chunkedProjects = (arr, size) => {
