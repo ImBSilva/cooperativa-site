@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Image, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button, Image, Card, Carousel } from 'react-bootstrap';
 import React, { useState, useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import DesenvolvimentoImage from './Images/Desenvolvimento.png';
@@ -41,6 +41,61 @@ const Servicos = () => {
   const [selectedService, setSelectedService] = useState(SERVICES_DATA[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const isMobile = windowWidth <= 768;
+
+  const MobileView = () => (
+    <Carousel
+      activeIndex={currentIndex}
+      onSelect={(index) => handleCardClick(SERVICES_DATA[index].number)}
+      interval={6000}
+      indicators={false}
+      className="service-mobile-carousel"
+    >
+      {SERVICES_DATA.map((service, index) => (
+        <Carousel.Item key={index}>
+          <ServiceCard 
+            service={service} 
+            isSelected={selectedService.number === service.number}
+          />
+        </Carousel.Item>
+      ))}
+    </Carousel>
+  );
+
+  const DesktopView = () => (
+    <Row className="service-cards">
+      {SERVICES_DATA.map((service, index) => (
+        <Col key={index} md={3}>
+          <ServiceCard 
+            service={service} 
+            isSelected={selectedService.number === service.number}
+            onClick={() => handleCardClick(service.number)}
+          />
+        </Col>
+      ))}
+    </Row>
+  );
+
+  const ServiceCard = ({ service, isSelected, onClick }) => (
+    <Card
+      onClick={onClick}
+      className={`clickable-card text-center ${isSelected ? 'selected-card' : ''}`}
+    >
+      <Card.Body>
+        <Card.Title className="service-number">{service.number}</Card.Title>
+        <Card.Text className={`card-text ${isSelected ? 'selected' : ''}`}>
+          {service.title}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleCardClick = (cardNumber) => {
     const index = SERVICES_DATA.findIndex((service) => service.number === cardNumber);
@@ -108,21 +163,7 @@ const Servicos = () => {
             />
           </Col>
         </Row>
-        <Row className="service-cards">
-          {SERVICES_DATA.map((service, index) => (
-            <Col key={index} xs={6} md={3} className="mb-3">
-              <Card
-                onClick={() => handleCardClick(service.number)}
-                className={`clickable-card text-center h-100 ${selectedService.number === service.number ? 'selected-card' : ''}`}
-              >
-                <Card.Body className="d-flex flex-column justify-content-center">
-                  <Card.Title className="service-number">{service.number}</Card.Title>
-                  <Card.Text className={`card-text ${selectedService.number === service.number ? 'selected' : ''}`}>{service.title}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        {isMobile ? <MobileView /> : <DesktopView />}
       </Col>
     </Container>
   );

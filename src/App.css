@@ -710,3 +710,16 @@
     margin-bottom: var(--spacing-sm);
   }
 }
+
+.service-mobile-carousel .carousel-control-prev,
+.service-mobile-carousel .carousel-control-next {
+  display: none;
+}
+
+/* Optional: Show controls on desktop */
+@media (min-width: 769px) {
+  .service-mobile-carousel .carousel-control-prev,
+  .service-mobile-carousel .carousel-control-next {
+    display: flex;
+  }
+}
