@@ -1,7 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* ===========================================
+   CSS VARIABLES - Design System
+   =========================================== */
+:root {
+  /* Colors */
+  --color-background: #0C0C0C;
+  --color-primary: #EC221F;
+  --color-primary-dark: #861311;
+  --color-text: #FFFFFF;
+  --color-text-muted: #5F5F5F;
+  --color-text-light: #FEE9E7;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(102.3deg, #EC221F 7.87%, #861311 88.1%);
+  --gradient-dark: linear-gradient(307.8deg, #0C0C0C -35.29%, #808080 583.32%);
+  --gradient-glow: radial-gradient(circle, rgba(236, 34, 31, 0.15) 0%, transparent 70%);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-default: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(236, 34, 31, 0.3);
+}
+
+/* Scroll Suave Global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: var(--shadow-md); }
+  50% { box-shadow: var(--shadow-glow); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Animate sections on load */
+section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
 .app-wrapper {
-  background-color: #0C0C0C !important;
+  background-color: var(--color-background) !important;
   min-height: 100dvh;
   width: 100%;
 }
@@ -10,7 +95,6 @@
   max-width: 900px !important;
   margin: auto !important;
   padding: 0px 0px 80px 0px;
-
 }
 
 .custom-navbar {
@@ -287,8 +371,21 @@
   line-height: 20px !important;
   height: 56px;
   border-radius: 45px !important;
-  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-md);
   border: none !important;
+  transition: all var(--transition-default);
+  cursor: pointer;
+}
+
+.black-button:hover,
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.cta-button:active,
+.black-button:active {
+  transform: translateY(0);
 }
 
 .portfolio {
@@ -789,4 +886,46 @@
   height: 10px;
   border-radius: 50%;
   margin: 0 5px;
+}
+
+/* ===========================================
+   FOOTER
+   =========================================== */
+.site-footer {
+  background: var(--gradient-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: var(--spacing-xl);
+}
+
+.footer-copyright {
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-default);
+}
+
+.footer-social a:hover {
+  background: var(--gradient-primary);
+  transform: translateY(-3px);
+}
+
+.footer-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-text-muted);
+  transition: fill var(--transition-default);
+}
+
+.footer-social a:hover .footer-icon {
+  fill: var(--color-text);
 }

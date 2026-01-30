@@ -101,5 +101,8 @@
       "message": "Type your message"
     },
     "sendButton": "Send"
+  },
+  "footer": {
+    "rights": "All rights reserved."
   }
 }
