@@ -9,11 +9,11 @@ const QuemSomos = () => {
 
     return (
         <Container className='quem-somos'>
-            <Row>
-                <Col md={6}>
+            <Row className="gy-4">
+                {/*<Col xs={12} md={6} className="order-2 order-md-1">
                     <Image src={TeamImage} fluid rounded />
-                </Col>
-                <Col md={6} className='services-title'>
+                </Col>*/}
+                <Col xs={12} md={12} className='services-title order-1 order-md-2'>
                     <h3>
                         <span className="gray-title">{t("aboutUs.title")}</span>{' '}
                         <span className="orange-title">{t("aboutUs.secondTitle")}</span>

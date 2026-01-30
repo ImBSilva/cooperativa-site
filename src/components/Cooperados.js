@@ -19,6 +19,8 @@ import MatheusPerfilImage from './Images/MatheusPerfil.png';
 
 const Cooperados = () => {
     const { t } = useTranslation('common');
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const isMobile = windowWidth <= 768;
 
     const team = [
         {
@@ -36,7 +38,7 @@ const Cooperados = () => {
             socialLinks: [
                 { icon: <LinkedinIcon />, url: 'https://www.linkedin.com/in/imbsilva/' },
                 { icon: <ArtstationIcon />, url: 'https://www.artstation.com/bruno_silva' },
-                { icon: <InstagramIcon />, url: 'https://www.instagram.com/bruunoreinaldo/' },
+                { icon: <InstagramIcon />, url: 'https://www.instagram.com/art.imbsil/' },
                 { icon: <GithubIcon />, url: 'https://github.com/ImBSilva' },
                 { icon: <GitlabIcon />, url: 'https://gitlab.com/ImBSilva' },
             ],
@@ -103,6 +105,12 @@ const Cooperados = () => {
     const intervalRef = useRef(null);
     const [isAnimating, setIsAnimating] = useState(false);
 
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const resetTimer = () => {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
@@ -163,79 +171,163 @@ const Cooperados = () => {
         return () => clearTimeout(timer);
     }, [selectedMemberIndex]);
 
+    // Componente do card de membro
+    const MemberCard = ({ member, index }) => (
+        <Card
+            onClick={() => handleCardClick(index)}
+            className={`clickable-card ${selectedMemberIndex === index ? 'selected' : ''}`}>
+            <Card.Body>
+                <Card.Title className={`card-title ${selectedMemberIndex === index ? 'selected' : ''}`}>{member.name}</Card.Title>
+                <Card.Text className='card-list'>
+                    <ul className="custom-list">
+                        {member.services.map((service, serviceIndex) => (
+                            <li key={serviceIndex}>{service}</li>
+                        ))}
+                    </ul>
+                </Card.Text>
+            </Card.Body>
+        </Card>
+    );
+
+    // View Mobile com informações do membro
+    const MemberInfo = ({ member }) => (
+        <>
+            <Row className="justify-content-center mb-3">
+                <Col xs={8} sm={6} className="text-center">
+                    <Image
+                        src={member.photo}
+                        roundedCircle
+                        fluid
+                        className={`profile-image ${isAnimating ? 'fade-in active' : 'fade-in'}`}
+                    />
+                </Col>
+            </Row>
+            <Row className="text-center">
+                <span className='links-title'>{t("teamComponent.socialMediaTitle")}</span>
+            </Row>
+            <Row className='icons justify-content-center'>
+                {member.socialLinks.map((link, index) => (
+                    <Col xs={2} key={index}>
+                        <a href={link.url} target="_blank" rel="noopener noreferrer">
+                            {link.icon}
+                        </a>
+                    </Col>
+                ))}
+            </Row>
+        </>
+    );
+
     return (
         <Container className='cooperados'>
             <GradientDefs />
-            <Row>
-                <Col md={9} className="services-title cooperados">
-                    <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}
-                        style={{ visibility: isAnimating ? 'hidden' : 'visible' }}>
-                        <h3 className="orange-title">
-                            {team[selectedMemberIndex].name}
-                        </h3>
-                        <p>
-                            {team[selectedMemberIndex].about}
-                        </p>
-                        <span>{t('teamComponent.favoriteGamesText')}</span>{' '}
-                        <span className="favorite-games">{team[selectedMemberIndex].favoriteGames}</span>
-                    </div>
-                </Col>
-                <Col md={3} className="cooperados card-info">
-                    <Row className='photo'>
-                        <Image
-                            src={team[selectedMemberIndex].photo}
-                            roundedCircle
-                            fluid
-                            className={`profile-image ${isAnimating ? 'fade-in active' : 'fade-in'}`}
-                        />
+            
+            {isMobile ? (
+                // MOBILE VIEW
+                <>
+                    <Row className="justify-content-center mb-4">
+                        <Col xs={10}>
+                            <MemberInfo member={team[selectedMemberIndex]} />
+                        </Col>
                     </Row>
+                    <Row className="justify-content-center">
+                        <Col xs={12} className="services-title text-center">
+                            <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}
+                                style={{ visibility: isAnimating ? 'hidden' : 'visible' }}>
+                                <h3 className="orange-title">
+                                    {team[selectedMemberIndex].name}
+                                </h3>
+                                <p>
+                                    {team[selectedMemberIndex].about}
+                                </p>
+                                <span>{t('teamComponent.favoriteGamesText')}</span>{' '}
+                                <span className="favorite-games">{team[selectedMemberIndex].favoriteGames}</span>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center mt-4">
+                        <Col xs={12}>
+                            <Row className="justify-content-center g-2">
+                                {team.map((member, index) => (
+                                    <Col key={index} xs={6} className="mb-3">
+                                        <MemberCard member={member} index={index} />
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center mt-3">
+                        <Col xs="auto">
+                            <Button className="me-2 black-button" onClick={handlePreviousButtonClick}>
+                                <FaArrowLeft className='gradient-icon' />
+                            </Button>
+                            <Button onClick={handleNextButtonClick} className="black-button">
+                                <FaArrowRight className='gradient-icon' />
+                            </Button>
+                        </Col>
+                    </Row>
+                </>
+            ) : (
+                // DESKTOP VIEW
+                <>
                     <Row>
-                        <span className='links-title'>{t("teamComponent.socialMediaTitle")}</span>
+                        <Col md={9} className="services-title cooperados">
+                            <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}
+                                style={{ visibility: isAnimating ? 'hidden' : 'visible' }}>
+                                <h3 className="orange-title">
+                                    {team[selectedMemberIndex].name}
+                                </h3>
+                                <p>
+                                    {team[selectedMemberIndex].about}
+                                </p>
+                                <span>{t('teamComponent.favoriteGamesText')}</span>{' '}
+                                <span className="favorite-games">{team[selectedMemberIndex].favoriteGames}</span>
+                            </div>
+                        </Col>
+                        <Col md={3} className="cooperados card-info">
+                            <Row className='photo'>
+                                <Image
+                                    src={team[selectedMemberIndex].photo}
+                                    roundedCircle
+                                    fluid
+                                    className={`profile-image ${isAnimating ? 'fade-in active' : 'fade-in'}`}
+                                />
+                            </Row>
+                            <Row>
+                                <span className='links-title'>{t("teamComponent.socialMediaTitle")}</span>
+                            </Row>
+                            <Row className='icons'>
+                                {team[selectedMemberIndex].socialLinks.map((link, index) => (
+                                    <Col md={2} key={index} >
+                                        <a href={link.url} target="_blank" rel="noopener noreferrer">
+                                            {link.icon}
+                                        </a>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Col>
                     </Row>
-                    <Row className='icons'>
-                        {team[selectedMemberIndex].socialLinks.map((link, index) => (
-                            <Col md={2} key={index} >
-                                <a href={link.url} target="_blank" rel="noopener noreferrer">
-                                    {link.icon}
-                                </a>
-                            </Col>
-                        ))}
-                    </Row>
-                </Col>
-            </Row>
-            <Row >
-                <Col md={1} className='justify-contend'>
-                    <Button className="me-2 black-button" onClick={handlePreviousButtonClick}>
-                        <FaArrowLeft className='gradient-icon' />
-                    </Button>
-                </Col>
-                <Col md={10}>
-                    <Row className="cooperados justify-content-center ">
-                        {team.map((member, index) => (
-                            <Col key={index} md={3} className="mb-3">
-                                <Card
-                                    onClick={() => handleCardClick(index)}
-                                    className={`clickable-card ${selectedMemberIndex === index ? 'selected' : ''}`}>
-                                    <Card.Body>
-                                        <Card.Title className={`card-title ${selectedMemberIndex === index ? 'selected' : ''}`}>{member.name}</Card.Title>
-                                        <Card.Text className='card-list'>
-                                            <ul className="custom-list">
-                                                {member.services.map((service, serviceIndex) => (
-                                                    <li key={serviceIndex}>{service}</li>
-                                                ))}
-                                            </ul>
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-                </Col>
+                    <Row >
+                        <Col md={1} className='justify-contend'>
+                            <Button className="me-2 black-button" onClick={handlePreviousButtonClick}>
+                                <FaArrowLeft className='gradient-icon' />
+                            </Button>
+                        </Col>
+                        <Col md={10}>
+                            <Row className="cooperados justify-content-center ">
+                                {team.map((member, index) => (
+                                    <Col key={index} md={3} className="mb-3">
+                                        <MemberCard member={member} index={index} />
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Col>
 
-                <Col md={1} className='justify-contend'>
-                    <Button onClick={handleNextButtonClick} className="me-2 black-button"><FaArrowRight className='gradient-icon' /></Button>
-                </Col>
-            </Row>
+                        <Col md={1} className='justify-contend'>
+                            <Button onClick={handleNextButtonClick} className="me-2 black-button"><FaArrowRight className='gradient-icon' /></Button>
+                        </Col>
+                    </Row>
+                </>
+            )}
         </Container>
     );
 

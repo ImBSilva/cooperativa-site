@@ -50,6 +50,12 @@
   .custom-navbar .nav-link {
       padding: 10px 0;
   }
+  .navbar-collapse {
+      background-color: #0C0C0C;
+      padding: 1rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+  }
 }
 
 
@@ -668,21 +674,64 @@
   margin: 0 auto;
 }
 
+/* ===========================================
+   MOBILE STYLES (max-width: 768px)
+   =========================================== */
 @media (max-width: 768px) {
+  /* Botões */
   .black-button,
   .cta-button {
     width: 100%;
     margin-bottom: 1rem;
   }
-}
-@media (max-width: 768px) {
+
+  /* Language Switcher */
   .language-switcher > div {
-    margin-top: 80px !important;  /* Slightly larger margin for mobile */
+    margin-top: 80px !important;
   }
-  .black-button,
-  .cta-button {
-    width: 100%;
-    margin-bottom: 1rem;
+
+  /* Quem Somos - Texto antes da imagem */
+  .quem-somos .row {
+    flex-direction: column-reverse;
+  }
+  
+  .quem-somos [class*="col-md-6"]:first-child {
+    margin-top: 1.5rem;
+  }
+
+  /* Cooperados */
+  .cooperados .nav-buttons-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .cooperados .nav-button-desktop {
+    display: none !important;
+  }
+
+  .cooperados .card-info {
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+
+  .cooperados .services-title {
+    text-align: center;
+  }
+
+  .cooperados .content-slide {
+    text-align: center;
+  }
+
+  /* MailUs Form */
+  .mailUs .card {
+    padding: 0px 16px !important;
+  }
+
+  .mailUs .form-row-mobile > [class*="col"] {
+    padding: 0;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -722,4 +771,22 @@
   .service-mobile-carousel .carousel-control-next {
     display: flex;
   }
+}
+
+/* Cooperados Mobile Carousel */
+.cooperados-mobile-carousel .carousel-control-prev,
+.cooperados-mobile-carousel .carousel-control-next {
+  display: none;
+}
+
+.cooperados-mobile-carousel .carousel-indicators {
+  bottom: -30px;
+}
+
+.cooperados-mobile-carousel .carousel-indicators button {
+  background-color: #EC221F;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
 }
