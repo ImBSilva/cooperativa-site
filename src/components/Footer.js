@@ -23,7 +23,7 @@ const Footer = () => {
                     <Col xs={12} md={6}>
                         <div className="footer-social d-flex justify-content-center justify-content-md-end gap-3">
                             <a href="https://www.instagram.com/studiocapivaraneon/" 
-                               target="_blank" 
+                               target="_blank"
                                rel="noopener noreferrer"
                                aria-label="Instagram">
                                 <InstagramIcon className="footer-icon" />
