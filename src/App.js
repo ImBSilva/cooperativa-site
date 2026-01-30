@@ -8,7 +8,6 @@ import QuemSomos from './components/QuemSomos.js';
 import Cooperados from './components/Cooperados.js';
 import CustomNavbar from './components/CustomNavbar.js';
 import Portifolio from './components/Portifolio.js';
-import Footer from './components/Footer.js';
 import './useTranslation.js';
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
           </section>
 
         </Container>
-        <Footer />
       </div>
     </Router>
   );

@@ -9,14 +9,6 @@ import GuacaRoyaleImage from './Images/ProjectThumbs/GuacaRoyaleThumb.png';
 
 const Portfolio = () => {
   const { t } = useTranslation('common');
-  const [windowWidth, setWindowWidth] = React.useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
-
-  React.useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const projects = [
     { id: 1, title: 'Puzzle Pirate', image: PuzzlePirateImage, link: 'https://www.artstation.com/studiocapivaraneon' },
     { id: 2, title: 'Cat Racer', image: CatRacerImage, link: 'https://www.artstation.com/studiocapivaraneon' },
@@ -25,20 +17,11 @@ const Portfolio = () => {
 
   ];
 
-  // Ajusta quantidade de projetos por slide baseado no viewport
-  const getItemsPerSlide = () => {
-    if (windowWidth < 576) return 1;  // Mobile
-    if (windowWidth < 992) return 2;  // Tablet
-    return 3;  // Desktop
-  };
-
   const chunkedProjects = (arr, size) => {
     return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
       arr.slice(i * size, i * size + size)
     );
   };
-
-  const itemsPerSlide = getItemsPerSlide();
 
   return (
     <Container>
@@ -52,9 +35,9 @@ const Portfolio = () => {
         prevIcon={<FaArrowLeft />}
         nextIcon={<FaArrowRight />}
       >
-        {chunkedProjects(projects, itemsPerSlide).map((chunk, index) => (
+        {chunkedProjects(projects, 3).map((chunk, index) => (
           <Carousel.Item key={index}>
-            <Row className="justify-content-center">
+            <Row>
               {chunk.map(project => (
                 <Col key={project.id} xs={12} sm={6} md={4}>
                   <a href={project.link} target="_blank" rel="noopener noreferrer" className="d-block mb-4 portfolio-link-button">
