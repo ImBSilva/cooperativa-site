@@ -37,7 +37,7 @@ const Cooperados = () => {
                 { icon: <LinkedinIcon />, url: 'https://www.linkedin.com/in/imbsilva/' },
                 { icon: <ArtstationIcon />, url: 'https://www.artstation.com/bruno_silva' },
                 { icon: <InstagramIcon />, url: 'https://www.instagram.com/bruunoreinaldo/' },
-                { icon: <GithubIcon />, url: 'https://www.instagram.com/bruunoreinaldo/' },
+                { icon: <GithubIcon />, url: 'https://github.com/ImBSilva' },
                 { icon: <GitlabIcon />, url: 'https://gitlab.com/ImBSilva' },
             ],
         },
