@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navbar, Nav, Container, Image } from 'react-bootstrap';
 import { Link } from 'react-scroll';
 import logo from './Images/CapiLogo.png';

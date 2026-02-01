@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";

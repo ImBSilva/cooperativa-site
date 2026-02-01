@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import TeamImage from './Images/Team.jpg';
 import { useTranslation } from 'react-i18next';
