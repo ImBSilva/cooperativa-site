@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button, Image, Card, Carousel } from 'react-bootstrap';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import DesenvolvimentoImage from './Images/Desenvolvimento.png';
 import ArteImage from './Images/Arte.png';

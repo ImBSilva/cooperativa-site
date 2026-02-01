@@ -1,6 +1,6 @@
 import GradientDefs from './GradientDefs.js';
 import { useTranslation } from 'react-i18next';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col, Button, Image, Card } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { ReactComponent as LinkedinIcon } from './Icons/Linkedin-icon.svg';

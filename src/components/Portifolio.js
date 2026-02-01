@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Carousel, Col, Image } from 'react-bootstrap';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
