@@ -8,11 +8,11 @@ const QuemSomos = () => {
 
     return (
         <Container className='quem-somos'>
-            <Row className="gy-4">
-                {/*<Col xs={12} md={6} className="order-2 order-md-1">
+            <Row>
+                <Col md={6}>
                     <Image src={TeamImage} fluid rounded />
-                </Col>*/}
-                <Col xs={12} md={12} className='services-title order-1 order-md-2'>
+                </Col>
+                <Col md={6} className='services-title'>
                     <h3>
                         <span className="gray-title">{t("aboutUs.title")}</span>{' '}
                         <span className="orange-title">{t("aboutUs.secondTitle")}</span>

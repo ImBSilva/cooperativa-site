@@ -46,7 +46,7 @@ const MailUs = () => {
                     </Card.Text>
                     <Form ref={form} onSubmit={handleSubmit}>
                         <Row className="mb-3">
-                            <Col xs={12} md={6} className="mb-3 mb-md-0">
+                            <Col>
                                 <Form.Group controlId="formName">
                                     <Form.Control
                                         type="text"
@@ -56,7 +56,7 @@ const MailUs = () => {
                                     />
                                 </Form.Group>
                             </Col>
-                            <Col xs={12} md={6}>
+                            <Col>
                                 <Form.Group controlId="formEmail">
                                     <Form.Control
                                         type="email"
