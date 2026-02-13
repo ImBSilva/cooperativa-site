@@ -108,64 +108,112 @@ const Servicos = () => {
             <span className="overlap">{selectedService.title}</span>
           </h3>
         </Row>
-        <Row className="mb-4">
-          <Col xs={12} md={6} className="d-flex flex-column mb-4 mb-md-0">
+        {isMobile ? (
+          /* MOBILE LAYOUT: Description -> Image -> Button */
+          <div className="d-flex flex-column mb-4">
             <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}>
-              <div className="flex-grow-1 sub-text text-start">
+              <div className="sub-text text-start mb-3">
                 <p>{selectedService.description}</p>
               </div>
-              <div className="mt-3">
-                <Button className="cta-button quote-button"
-                  as={Link}
-                  to="MailUs"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}>
-                  {t('services.buttonCTA.text')}
-                  <FaArrowRight className="ms-2" style={{ width: '16px', height: '16px' }} />
-                </Button>
-              </div>
             </div>
-          </Col>
-          <Col xs={12} md={6} className="d-flex align-items-center justify-content-center">
-            <Image
-              src={selectedService.image}
-              fluid
-              className={`service-image rounded ${isAnimating ? 'fade-in active' : 'fade-in'}`}
-            />
-          </Col>
-        </Row>
+            
+            <div className="d-flex justify-content-center mb-3">
+              <Image
+                src={selectedService.image}
+                fluid
+                className={`service-image rounded ${isAnimating ? 'fade-in active' : 'fade-in'}`}
+              />
+            </div>
+
+            <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'} d-flex justify-content-center`}>
+              <Button className="cta-button quote-button"
+                as={Link}
+                to="MailUs"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}>
+                {t('services.buttonCTA.text')}
+                <FaArrowRight className="ms-2" style={{ width: '16px', height: '16px' }} />
+              </Button>
+            </div>
+          </div>
+        ) : (
+          /* DESKTOP LAYOUT */
+          <Row className="mb-4">
+            <Col xs={12} md={6} className="d-flex flex-column mb-4 mb-md-0">
+              <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}>
+                <div className="flex-grow-1 sub-text text-start">
+                  <p>{selectedService.description}</p>
+                </div>
+                <div className="mt-3">
+                  <Button className="cta-button quote-button"
+                    as={Link}
+                    to="MailUs"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}>
+                    {t('services.buttonCTA.text')}
+                    <FaArrowRight className="ms-2" style={{ width: '16px', height: '16px' }} />
+                  </Button>
+                </div>
+              </div>
+            </Col>
+            <Col xs={12} md={6} className="d-flex align-items-center justify-content-center">
+              <Image
+                src={selectedService.image}
+                fluid
+                className={`service-image rounded ${isAnimating ? 'fade-in active' : 'fade-in'}`}
+              />
+            </Col>
+          </Row>
+        )}
 
         {isMobile ? (
           /* MOBILE: Carousel com 2 cards por slide */
-          <Carousel
-            activeIndex={Math.floor(currentIndex / 2)}
-            onSelect={(slideIndex) => handleCardClick(slideIndex * 2)}
-            interval={null}
-            indicators={true}
-            controls={false}
-            className="service-mobile-carousel"
-          >
-            {chunkedServices.map((chunk, slideIndex) => (
-              <Carousel.Item key={slideIndex}>
-                <Row className="justify-content-center g-3 px-2">
-                  {chunk.map((service, i) => {
-                    const realIndex = slideIndex * 2 + i;
-                    return (
-                      <Col xs={6} key={realIndex}>
-                        <ServiceCard
-                          service={service}
-                          index={realIndex}
-                          isSelected={currentIndex === realIndex}
-                        />
-                      </Col>
-                    );
-                  })}
-                </Row>
-              </Carousel.Item>
-            ))}
-          </Carousel>
+          <>
+            <Carousel
+              activeIndex={Math.floor(currentIndex / 2)}
+              onSelect={(slideIndex) => handleCardClick(slideIndex * 2)}
+              interval={null}
+              indicators={false}
+              controls={false}
+              className="service-mobile-carousel"
+            >
+              {chunkedServices.map((chunk, slideIndex) => (
+                <Carousel.Item key={slideIndex}>
+                  <Row className="justify-content-center g-3 px-2">
+                    {chunk.map((service, i) => {
+                      const realIndex = slideIndex * 2 + i;
+                      return (
+                        <Col xs={6} key={realIndex}>
+                          <ServiceCard
+                            service={service}
+                            index={realIndex}
+                            isSelected={currentIndex === realIndex}
+                          />
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+            {/* Indicadores customizados abaixo dos cards */}
+            <div className="d-flex justify-content-center mt-3">
+              <div className="custom-carousel-indicators">
+                {chunkedServices.map((_, slideIndex) => (
+                  <button
+                    key={slideIndex}
+                    className={`carousel-dot ${Math.floor(currentIndex / 2) === slideIndex ? 'active' : ''}`}
+                    onClick={() => handleCardClick(slideIndex * 2)}
+                    aria-label={`Slide ${slideIndex + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
         ) : (
           /* DESKTOP: Grid com 4 cards */
           <Row className="service-cards">

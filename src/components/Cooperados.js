@@ -17,6 +17,8 @@ import MatheusPerfilImage from './Images/MatheusPerfil.png';
 
 const Cooperados = () => {
     const { t } = useTranslation('common');
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const isMobile = windowWidth <= 768;
 
     const team = [
         {
@@ -34,7 +36,7 @@ const Cooperados = () => {
             socialLinks: [
                 { icon: <LinkedinIcon />, url: 'https://www.linkedin.com/in/imbsilva/' },
                 { icon: <ArtstationIcon />, url: 'https://www.artstation.com/bruno_silva' },
-                { icon: <InstagramIcon />, url: 'https://www.instagram.com/bruunoreinaldo/' },
+                { icon: <InstagramIcon />, url: 'https://www.instagram.com/art.imbsil/' },
                 { icon: <GithubIcon />, url: 'https://github.com/ImBSilva' },
                 { icon: <GitlabIcon />, url: 'https://gitlab.com/ImBSilva' },
             ],
