@@ -1,5 +1,4 @@
-import { Container, Row, Col, Image } from 'react-bootstrap';
-import TeamImage from './Images/Team.jpg';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 
@@ -8,11 +7,9 @@ const QuemSomos = () => {
 
     return (
         <Container className='quem-somos'>
-            <Row>
-                <Col md={6}>
-                    <Image src={TeamImage} fluid rounded />
-                </Col>
-                <Col md={6} className='services-title'>
+            <Row className="gy-4">
+
+                <Col xs={12} md={12} className='services-title order-1 order-md-2'>
                     <h3>
                         <span className="gray-title">{t("aboutUs.title")}</span>{' '}
                         <span className="orange-title">{t("aboutUs.secondTitle")}</span>

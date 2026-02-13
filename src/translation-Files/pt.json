@@ -101,5 +101,8 @@
       "message": "Digite sua mensagem"
     },
     "sendButton": "Enviar"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
   }
 }
