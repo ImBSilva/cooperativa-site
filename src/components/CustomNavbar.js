@@ -13,11 +13,11 @@ function NavBar() {
 
     return (
         <Navbar expand="lg" expanded={expanded} className="custom-navbar w-100">
-            <Container fluid>
-                <Navbar.Brand as={Link} to="inicio" spy={true} smooth={true} offset={-70} duration={400}>
+            <Container fluid className="px-3 px-md-4" style={{ maxWidth: '900px', margin: '0 auto' }}>
+                <Navbar.Brand as={Link} to="inicio" spy={true} smooth={true} offset={-70} duration={400} style={{ cursor: 'pointer' }}>
                     <Image src={logo} width="48" height="48" alt="Logo" />
                 </Navbar.Brand>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center d-lg-none">
                     <LanguageSwitcher className="me-2" />
                     <Navbar.Toggle 
                         aria-controls="responsive-navbar-nav" 
@@ -52,6 +52,9 @@ function NavBar() {
                             {t('navbar.contact')}
                         </Nav.Link>
                     </Nav>
+                    <div className="d-none d-lg-flex">
+                        <LanguageSwitcher />
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

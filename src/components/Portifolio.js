@@ -22,14 +22,12 @@ const Portfolio = () => {
     { id: 2, title: 'Cat Racer', image: CatRacerImage, link: 'https://www.artstation.com/studiocapivaraneon' },
     { id: 3, title: 'Desvia Pirata', image: DesviaPirataImage, link: 'https://www.artstation.com/studiocapivaraneon' },
     { id: 4, title: 'Guaca Royale', image: GuacaRoyaleImage, link: 'https://www.artstation.com/studiocapivaraneon' },
-
   ];
 
-  // Ajusta quantidade de projetos por slide baseado no viewport
   const getItemsPerSlide = () => {
-    if (windowWidth < 576) return 1;  // Mobile
-    if (windowWidth < 992) return 2;  // Tablet
-    return 3;  // Desktop
+    if (windowWidth < 576) return 1;
+    if (windowWidth < 992) return 2;
+    return 3;
   };
 
   const chunkedProjects = (arr, size) => {
@@ -56,17 +54,17 @@ const Portfolio = () => {
           <Carousel.Item key={index}>
             <Row className="justify-content-center">
               {chunk.map(project => (
-                <Col key={project.id} xs={12} sm={6} md={4}>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="d-block mb-4 portfolio-link-button">
+                <Col key={project.id} xs={12} sm={6} md={4} className="mb-3">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="d-block portfolio-link-button">
                     <div className="image-wrapper">
                       <Image 
-                        className="img-fluid "
+                        className="img-fluid"
                         src={project.image}
                         alt={project.title}
                         rounded
                       />
                     </div>
-                    <h5 className="mt-2">{project.title}</h5>
+                    <h5 className="mt-2 text-center">{project.title}</h5>
                   </a>
                 </Col>
               ))}

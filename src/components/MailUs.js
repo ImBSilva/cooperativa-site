@@ -3,17 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FaArrowRight } from 'react-icons/fa';
-import emailjs from '@emailjs/browser'; // Importe o EmailJS
+import emailjs from '@emailjs/browser';
 
 const MailUs = () => {
     const { t } = useTranslation('common');
     const recaptchaRef = useRef();
-    const form = useRef(); // Referência para o formulário
+    const form = useRef();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Verifica o reCAPTCHA
         const captchaValue = recaptchaRef.current.getValue();
         if (!captchaValue) {
             alert('Por favor, complete o reCAPTCHA');
@@ -21,17 +20,16 @@ const MailUs = () => {
         }
 
         try {
-            // Envia o formulário usando EmailJS
             await emailjs.sendForm(
-                process.env.REACT_APP_EMAILJS_SERVICE_ID, // Service ID
-                process.env.REACT_APP_EMAILJS_TEMPLATE_ID, // Template ID
-                form.current, // Referência do formulário
-                process.env.REACT_APP_EMAILJS_PUBLIC_KEY // Public Key
+                process.env.REACT_APP_EMAILJS_SERVICE_ID,
+                process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+                form.current,
+                process.env.REACT_APP_EMAILJS_PUBLIC_KEY
             );
 
             alert('Mensagem enviada com sucesso!');
-            form.current.reset(); // Limpa o formulário
-            recaptchaRef.current.reset(); // Reseta o reCAPTCHA
+            form.current.reset();
+            recaptchaRef.current.reset();
         } catch (error) {
             console.error('Erro ao enviar:', error);
             alert('Erro ao enviar a mensagem. Tente novamente.');
@@ -39,9 +37,9 @@ const MailUs = () => {
     };
 
     return (
-        <Container className='mailUs'>
+        <Container className='mailUs py-4'>
             <Card className='card mb-3'>
-                <Card.Body>
+                <Card.Body className="py-4">
                     <Card.Title className='card-title'>{t('mailUsComponent.contactTitle')}</Card.Title>
                     <Card.Text className='card-text'>
                         {t('mailUsComponent.contactSubtitle')}
@@ -52,7 +50,7 @@ const MailUs = () => {
                                 <Form.Group controlId="formName">
                                     <Form.Control
                                         type="text"
-                                        name="nome" // Nome do campo para o EmailJS
+                                        name="nome"
                                         placeholder={t('mailUsComponent.input.name')}
                                         required
                                     />
@@ -62,7 +60,7 @@ const MailUs = () => {
                                 <Form.Group controlId="formEmail">
                                     <Form.Control
                                         type="email"
-                                        name="email" // Nome do campo para o EmailJS
+                                        name="email"
                                         placeholder={t('mailUsComponent.input.email')}
                                         required
                                     />
@@ -73,7 +71,7 @@ const MailUs = () => {
                         <Form.Group className="mb-3" controlId="formPhone">
                             <Form.Control
                                 type="tel"
-                                name="telefone" // Nome do campo para o EmailJS
+                                name="telefone"
                                 placeholder={t('mailUsComponent.input.phone')}
                                 required
                             />
@@ -83,20 +81,22 @@ const MailUs = () => {
                             <Form.Control
                                 as="textarea"
                                 rows={3}
-                                name="mensagem" // Nome do campo para o EmailJS
+                                name="mensagem"
                                 placeholder={t('mailUsComponent.input.message')}
                                 required
                             />
                         </Form.Group>
 
-                        <Row className="mb-3">
+                        <Row className="mb-3 align-items-end">
                             <Col xs={12} md={6} className="mb-3 mb-md-0">
-                                <ReCAPTCHA
-                                    ref={recaptchaRef}
-                                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                                />
+                                <div style={{ overflow: 'hidden' }}>
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                                    />
+                                </div>
                             </Col>
-                            <Col xs={12} md={6} className='d-flex justify-content-center justify-content-md-end align-self-end'>
+                            <Col xs={12} md={6} className='d-flex justify-content-center justify-content-md-end'>
                                 <Button variant="primary" type="submit" className='cta-button w-100 w-md-auto'>
                                     {t('mailUsComponent.sendButton')} <FaArrowRight />
                                 </Button>

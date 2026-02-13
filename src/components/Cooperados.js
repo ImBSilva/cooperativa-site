@@ -1,7 +1,7 @@
 import GradientDefs from './GradientDefs.js';
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect, useRef } from 'react';
-import { Container, Row, Col, Button, Image, Card } from 'react-bootstrap';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Container, Row, Col, Button, Image, Card, Carousel } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { ReactComponent as LinkedinIcon } from './Icons/Linkedin-icon.svg';
 import { ReactComponent as InstagramIcon } from './Icons/Instagram-icon.svg';
@@ -14,8 +14,6 @@ import BrunoPerfilImage from './Images/BrunoPerfil.png';
 import WaliPerfilImage from './Images/WaliPerfil.png';
 import GabsPerfilImage from './Images/GabsPerfil.png';
 import MatheusPerfilImage from './Images/MatheusPerfil.png';
-
-
 
 const Cooperados = () => {
     const { t } = useTranslation('common');
@@ -34,7 +32,7 @@ const Cooperados = () => {
                 t('teamComponent.team.bruno.services.2'),
                 t('teamComponent.team.bruno.services.3')
             ],
-            photo: BrunoPerfilImage, // Replace with the actual image path
+            photo: BrunoPerfilImage,
             socialLinks: [
                 { icon: <LinkedinIcon />, url: 'https://www.linkedin.com/in/imbsilva/' },
                 { icon: <ArtstationIcon />, url: 'https://www.artstation.com/bruno_silva' },
@@ -72,7 +70,7 @@ const Cooperados = () => {
                 t('teamComponent.team.matheus.services.2'),
                 t('teamComponent.team.matheus.services.3')
             ],
-            photo: MatheusPerfilImage, // Replace with the actual image path
+            photo: MatheusPerfilImage,
             socialLinks: [
                 { icon: <LinkedinIcon />, url: 'https://www.linkedin.com/in/matheus-saraiva-26bab320b/' },
                 { icon: <GithubIcon />, url: 'https://github.com/matsaraiva' },
@@ -111,16 +109,15 @@ const Cooperados = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const resetTimer = () => {
+    const resetTimer = useCallback(() => {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
         }
-
         intervalRef.current = setInterval(() => {
             setIsAnimating(true);
             setSelectedMemberIndex((prevIndex) => (prevIndex + 1) % team.length);
-        }, 10000); // reset de tempo para trocar cooperado
-    };
+        }, 10000);
+    }, [team.length]);
 
     const handleCardClick = (cardIndex) => {
         if (!isAnimating) {
@@ -153,25 +150,26 @@ const Cooperados = () => {
                 clearInterval(intervalRef.current);
             }
         };
-    }, [team.length]);
+    }, [resetTimer]);
 
     useEffect(() => {
         if (isAnimating) {
             const timer = setTimeout(() => {
                 setIsAnimating(false);
-            }, 250); // Metade do tempo de transição CSS
-
+            }, 250);
             return () => clearTimeout(timer);
         }
     }, [isAnimating]);
 
     useEffect(() => {
         setIsAnimating(true);
-        const timer = setTimeout(() => setIsAnimating(false), 500); // Tempo total da animação
+        const timer = setTimeout(() => setIsAnimating(false), 500);
         return () => clearTimeout(timer);
     }, [selectedMemberIndex]);
 
-    // Componente do card de membro
+    const selectedMember = team[selectedMemberIndex];
+
+    // Card de membro
     const MemberCard = ({ member, index }) => (
         <Card
             onClick={() => handleCardClick(index)}
@@ -189,104 +187,124 @@ const Cooperados = () => {
         </Card>
     );
 
-    // View Mobile com informações do membro
+    // Info do membro (foto + redes sociais)
     const MemberInfo = ({ member }) => (
         <>
             <Row className="justify-content-center mb-3">
-                <Col xs={8} sm={6} className="text-center">
+                <Col xs={8} sm={6} md={4} className="text-center">
                     <Image
                         src={member.photo}
                         roundedCircle
                         fluid
                         className={`profile-image ${isAnimating ? 'fade-in active' : 'fade-in'}`}
+                        style={{ maxWidth: '200px' }}
                     />
                 </Col>
             </Row>
             <Row className="text-center">
                 <span className='links-title'>{t("teamComponent.socialMediaTitle")}</span>
             </Row>
-            <Row className='icons justify-content-center'>
+            <div className='social-icons-row'>
                 {member.socialLinks.map((link, index) => (
-                    <Col xs={2} key={index}>
-                        <a href={link.url} target="_blank" rel="noopener noreferrer">
-                            {link.icon}
-                        </a>
-                    </Col>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" key={index} className="social-icon-link">
+                        {link.icon}
+                    </a>
                 ))}
-            </Row>
+            </div>
         </>
     );
+
+    // Detalhes do membro (nome, sobre, jogos favoritos)
+    const MemberDetails = ({ member }) => (
+        <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}
+            style={{ visibility: isAnimating ? 'hidden' : 'visible' }}>
+            <h3 className="orange-title">
+                {member.name}
+            </h3>
+            <p>{member.about}</p>
+            <span>{t('teamComponent.favoriteGamesText')}</span>{' '}
+            <span className="favorite-games">{member.favoriteGames}</span>
+        </div>
+    );
+
+    // Agrupa membros em pares para carousel mobile (2 por slide)
+    const chunkedMembers = [];
+    for (let i = 0; i < team.length; i += 2) {
+        chunkedMembers.push(team.slice(i, i + 2));
+    }
 
     return (
         <Container className='cooperados'>
             <GradientDefs />
             
             {isMobile ? (
-                // MOBILE VIEW
+                /* ===== MOBILE VIEW ===== */
                 <>
                     <Row className="justify-content-center mb-4">
                         <Col xs={10}>
-                            <MemberInfo member={team[selectedMemberIndex]} />
+                            <MemberInfo member={selectedMember} />
                         </Col>
                     </Row>
                     <Row className="justify-content-center">
                         <Col xs={12} className="services-title text-center">
-                            <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}
-                                style={{ visibility: isAnimating ? 'hidden' : 'visible' }}>
-                                <h3 className="orange-title">
-                                    {team[selectedMemberIndex].name}
-                                </h3>
-                                <p>
-                                    {team[selectedMemberIndex].about}
-                                </p>
-                                <span>{t('teamComponent.favoriteGamesText')}</span>{' '}
-                                <span className="favorite-games">{team[selectedMemberIndex].favoriteGames}</span>
-                            </div>
+                            <MemberDetails member={selectedMember} />
                         </Col>
                     </Row>
+                    {/* Cards em carousel — 2 por slide */}
                     <Row className="justify-content-center mt-4">
                         <Col xs={12}>
-                            <Row className="justify-content-center g-2">
-                                {team.map((member, index) => (
-                                    <Col key={index} xs={6} className="mb-3">
-                                        <MemberCard member={member} index={index} />
-                                    </Col>
+                            <Carousel
+                                activeIndex={Math.floor(selectedMemberIndex / 2)}
+                                onSelect={(slideIndex) => handleCardClick(slideIndex * 2)}
+                                interval={null}
+                                indicators={false}
+                                controls={false}
+                                className="cooperados-mobile-carousel"
+                            >
+                                {chunkedMembers.map((chunk, slideIndex) => (
+                                    <Carousel.Item key={slideIndex}>
+                                        <Row className="justify-content-center g-3 px-2">
+                                            {chunk.map((member, i) => {
+                                                const realIndex = slideIndex * 2 + i;
+                                                return (
+                                                    <Col xs={6} key={realIndex}>
+                                                        <MemberCard member={member} index={realIndex} />
+                                                    </Col>
+                                                );
+                                            })}
+                                        </Row>
+                                    </Carousel.Item>
                                 ))}
-                            </Row>
+                            </Carousel>
                         </Col>
                     </Row>
-                    <Row className="justify-content-center mt-3">
+                    {/* Indicadores customizados abaixo dos cards */}
+                    <Row className="justify-content-center mt-3 mb-4">
                         <Col xs="auto">
-                            <Button className="me-2 black-button" onClick={handlePreviousButtonClick}>
-                                <FaArrowLeft className='gradient-icon' />
-                            </Button>
-                            <Button onClick={handleNextButtonClick} className="black-button">
-                                <FaArrowRight className='gradient-icon' />
-                            </Button>
+                            <div className="custom-carousel-indicators">
+                                {chunkedMembers.map((_, slideIndex) => (
+                                    <button
+                                        key={slideIndex}
+                                        className={`carousel-dot ${Math.floor(selectedMemberIndex / 2) === slideIndex ? 'active' : ''}`}
+                                        onClick={() => handleCardClick(slideIndex * 2)}
+                                        aria-label={`Slide ${slideIndex + 1}`}
+                                    />
+                                ))}
+                            </div>
                         </Col>
                     </Row>
                 </>
             ) : (
-                // DESKTOP VIEW
+                /* ===== DESKTOP VIEW ===== */
                 <>
                     <Row>
                         <Col md={9} className="services-title cooperados">
-                            <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}
-                                style={{ visibility: isAnimating ? 'hidden' : 'visible' }}>
-                                <h3 className="orange-title">
-                                    {team[selectedMemberIndex].name}
-                                </h3>
-                                <p>
-                                    {team[selectedMemberIndex].about}
-                                </p>
-                                <span>{t('teamComponent.favoriteGamesText')}</span>{' '}
-                                <span className="favorite-games">{team[selectedMemberIndex].favoriteGames}</span>
-                            </div>
+                            <MemberDetails member={selectedMember} />
                         </Col>
                         <Col md={3} className="cooperados card-info">
                             <Row className='photo'>
                                 <Image
-                                    src={team[selectedMemberIndex].photo}
+                                    src={selectedMember.photo}
                                     roundedCircle
                                     fluid
                                     className={`profile-image ${isAnimating ? 'fade-in active' : 'fade-in'}`}
@@ -296,8 +314,8 @@ const Cooperados = () => {
                                 <span className='links-title'>{t("teamComponent.socialMediaTitle")}</span>
                             </Row>
                             <Row className='icons'>
-                                {team[selectedMemberIndex].socialLinks.map((link, index) => (
-                                    <Col md={2} key={index} >
+                                {selectedMember.socialLinks.map((link, index) => (
+                                    <Col md={2} key={index}>
                                         <a href={link.url} target="_blank" rel="noopener noreferrer">
                                             {link.icon}
                                         </a>
@@ -306,14 +324,14 @@ const Cooperados = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Row >
+                    <Row>
                         <Col md={1} className='justify-contend'>
                             <Button className="me-2 black-button" onClick={handlePreviousButtonClick}>
                                 <FaArrowLeft className='gradient-icon' />
                             </Button>
                         </Col>
                         <Col md={10}>
-                            <Row className="cooperados justify-content-center ">
+                            <Row className="cooperados justify-content-center">
                                 {team.map((member, index) => (
                                     <Col key={index} md={3} className="mb-3">
                                         <MemberCard member={member} index={index} />
@@ -321,17 +339,16 @@ const Cooperados = () => {
                                 ))}
                             </Row>
                         </Col>
-
                         <Col md={1} className='justify-contend'>
-                            <Button onClick={handleNextButtonClick} className="me-2 black-button"><FaArrowRight className='gradient-icon' /></Button>
+                            <Button onClick={handleNextButtonClick} className="me-2 black-button">
+                                <FaArrowRight className='gradient-icon' />
+                            </Button>
                         </Col>
                     </Row>
                 </>
             )}
         </Container>
     );
-
 };
 
 export default Cooperados;
-

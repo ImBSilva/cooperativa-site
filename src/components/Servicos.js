@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button, Image, Card, Carousel } from 'react-bootstrap';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import DesenvolvimentoImage from './Images/Desenvolvimento.png';
 import ArteImage from './Images/Arte.png';
@@ -8,78 +8,74 @@ import PlanejamentoImage from './Images/Planejamento.jpg';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-scroll';
 
+const SERVICES_IMAGES = [DesenvolvimentoImage, ArteImage, AnimacaoImage, PlanejamentoImage];
+
 const Servicos = () => {
   const { t } = useTranslation('common');
 
-  const SERVICES_DATA = [
+  const getServicesData = useCallback(() => [
     {
       number: '01',
       title: t('services.development.title'),
       description: t('services.development.description'),
-      image: DesenvolvimentoImage,
+      image: SERVICES_IMAGES[0],
     },
     {
       number: '02',
       title: t('services.art.title'),
       description: t('services.art.description'),
-      image: ArteImage,
+      image: SERVICES_IMAGES[1],
     },
     {
       number: '03',
       title: t('services.animation.title'),
       description: t('services.animation.description'),
-      image: AnimacaoImage,
+      image: SERVICES_IMAGES[2],
     },
     {
       number: '04',
       title: t('services.planning.title'),
       description: t('services.planning.description'),
-      image: PlanejamentoImage,
+      image: SERVICES_IMAGES[3],
     },
-  ];
+  ], [t]);
 
-  const [selectedService, setSelectedService] = useState(SERVICES_DATA[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const isMobile = windowWidth <= 768;
 
-  const MobileView = () => (
-    <Carousel
-      activeIndex={currentIndex}
-      onSelect={(index) => handleCardClick(SERVICES_DATA[index].number)}
-      interval={6000}
-      indicators={false}
-      className="service-mobile-carousel"
-    >
-      {SERVICES_DATA.map((service, index) => (
-        <Carousel.Item key={index}>
-          <ServiceCard 
-            service={service} 
-            isSelected={selectedService.number === service.number}
-          />
-        </Carousel.Item>
-      ))}
-    </Carousel>
-  );
+  const servicesData = getServicesData();
+  const selectedService = servicesData[currentIndex];
 
-  const DesktopView = () => (
-    <Row className="service-cards">
-      {SERVICES_DATA.map((service, index) => (
-        <Col key={index} md={3}>
-          <ServiceCard 
-            service={service} 
-            isSelected={selectedService.number === service.number}
-            onClick={() => handleCardClick(service.number)}
-          />
-        </Col>
-      ))}
-    </Row>
-  );
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const ServiceCard = ({ service, isSelected, onClick }) => (
+  const handleCardClick = (index) => {
+    setCurrentIndex(index);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % servicesData.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [servicesData.length]);
+
+  useEffect(() => {
+    setIsAnimating(true);
+    const timer = setTimeout(() => {
+      setIsAnimating(false);
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
+
+  const ServiceCard = ({ service, index, isSelected }) => (
     <Card
-      onClick={onClick}
+      onClick={() => handleCardClick(index)}
       className={`clickable-card text-center ${isSelected ? 'selected-card' : ''}`}
     >
       <Card.Body>
@@ -91,38 +87,15 @@ const Servicos = () => {
     </Card>
   );
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const handleCardClick = (cardNumber) => {
-    const index = SERVICES_DATA.findIndex((service) => service.number === cardNumber);
-    setCurrentIndex(index);
-    setSelectedService(SERVICES_DATA[index]);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % SERVICES_DATA.length);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    setSelectedService(SERVICES_DATA[currentIndex]);
-    setIsAnimating(true);
-    const timer = setTimeout(() => {
-      setIsAnimating(false);
-    }, 250);
-    return () => clearTimeout(timer);
-  }, [currentIndex]);
+  // Agrupa os cards em pares para o carousel mobile (2 por slide)
+  const chunkedServices = [];
+  for (let i = 0; i < servicesData.length; i += 2) {
+    chunkedServices.push(servicesData.slice(i, i + 2));
+  }
 
   return (
     <Container>
-      <Col className="py-5">
+      <div className="py-5">
         <Row className="services-title">
           <h3>
             <span className="gray-title">{t('services.title')}</span>{' '}
@@ -136,7 +109,7 @@ const Servicos = () => {
           </h3>
         </Row>
         <Row className="mb-4">
-          <Col md={6} className="d-flex flex-column mb-4 mb-md-0">
+          <Col xs={12} md={6} className="d-flex flex-column mb-4 mb-md-0">
             <div className={`content-slide ${isAnimating ? 'fade-out' : 'fade-in'}`}>
               <div className="flex-grow-1 sub-text text-start">
                 <p>{selectedService.description}</p>
@@ -155,7 +128,7 @@ const Servicos = () => {
               </div>
             </div>
           </Col>
-          <Col md={6} className="d-flex align-items-center justify-content-center">
+          <Col xs={12} md={6} className="d-flex align-items-center justify-content-center">
             <Image
               src={selectedService.image}
               fluid
@@ -163,8 +136,51 @@ const Servicos = () => {
             />
           </Col>
         </Row>
-        {isMobile ? <MobileView /> : <DesktopView />}
-      </Col>
+
+        {isMobile ? (
+          /* MOBILE: Carousel com 2 cards por slide */
+          <Carousel
+            activeIndex={Math.floor(currentIndex / 2)}
+            onSelect={(slideIndex) => handleCardClick(slideIndex * 2)}
+            interval={null}
+            indicators={true}
+            controls={false}
+            className="service-mobile-carousel"
+          >
+            {chunkedServices.map((chunk, slideIndex) => (
+              <Carousel.Item key={slideIndex}>
+                <Row className="justify-content-center g-3 px-2">
+                  {chunk.map((service, i) => {
+                    const realIndex = slideIndex * 2 + i;
+                    return (
+                      <Col xs={6} key={realIndex}>
+                        <ServiceCard
+                          service={service}
+                          index={realIndex}
+                          isSelected={currentIndex === realIndex}
+                        />
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        ) : (
+          /* DESKTOP: Grid com 4 cards */
+          <Row className="service-cards">
+            {servicesData.map((service, index) => (
+              <Col key={index} md={3}>
+                <ServiceCard
+                  service={service}
+                  index={index}
+                  isSelected={currentIndex === index}
+                />
+              </Col>
+            ))}
+          </Row>
+        )}
+      </div>
     </Container>
   );
 };
